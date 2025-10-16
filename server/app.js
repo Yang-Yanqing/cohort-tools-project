@@ -7,6 +7,8 @@ const students=require("./students.json")
 const cohorts=require("./cohorts.json")
 const cors=require('cors');
 const { model } = require("mongoose");
+const authRoutes = require("./auth.routes");
+const userRoutes = require("./user.routes");
 // STATIC DATA
 // Devs Team - Import the provided files with JSON data of students and cohorts here:
 // ...
@@ -65,6 +67,9 @@ app.use(morgan("dev"));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use("/auth", authRoutes);
+app.use("/api/users", userRoutes);
+
 
 
 

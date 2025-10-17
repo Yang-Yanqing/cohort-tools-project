@@ -32,20 +32,20 @@ router.post("/login", async (req, res) => {
       { expiresIn: "2h" }
     );
 
-    res.status(200).json({ message: "登录成功", token });
+    res.status(200).json({ message: "Login successful", token });
   } catch (error) {
-    res.status(500).json({ message: "登录失败", error });
+    res.status(500).json({ message: "Login failed", error });
   }
 });
 router.get("/verify", (req, res) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];
-    if (!token) return res.status(401).json({ message: "未提供token" });
+    if (!token) return res.status(401).json({ message: "Token not provided" });
 
     const decoded = jwt.verify(token, SECRET);
-    res.status(200).json({ message: "验证成功", decoded });
+    res.status(200).json({ message: "Verification successful", decoded });
   } catch (error) {
-    res.status(401).json({ message: "无效或过期token", error });
+    res.status(401).json({ message: "Invalid or expired token", error });
   }
 });
 
